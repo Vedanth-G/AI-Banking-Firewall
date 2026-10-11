@@ -694,6 +694,12 @@ _HTML_DASHBOARD = """<!DOCTYPE html>
         } else {
           document.getElementById("stepL4").classList.add("blocked-here");
         }
+      } else if (data.verdict === "CHALLENGE") {
+        document.getElementById("stepL4").classList.add("active");
+      } else {
+        document.getElementById("stepL4").classList.add("active");
+      }
+
       // Dynamic Vulnerable vs Protected Comparison
       const simBox = document.getElementById("simComparison");
       if (data.verdict === "BLOCKED") {

@@ -1,5 +1,5 @@
 # Bankism: Blue-Team AI Firewall & Guardrail Defense
-## Submission Abstract — PromptWars x UVCE
+## Technical Architecture & Design Abstract
 
 ### 1. Problem Understanding
 Modern banking and fintech platforms increasingly integrate Large Language Models (LLMs) to automate customer support, process natural language payments, and parse transactions. However, granting financial execution tools direct access to raw user prompts creates critical vulnerabilities:

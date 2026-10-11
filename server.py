@@ -548,7 +548,7 @@ _HTML_DASHBOARD = """<!DOCTYPE html>
         <!-- Red Team vs Protected Simulator Comparison -->
         <div style="background:#eaf2ff; border:1px solid #bfdbfe; border-radius:8px; padding:12px; margin-top:4px;">
           <div style="font-size:0.78rem; font-weight:700; color:#1e40af; text-transform:uppercase; margin-bottom:6px;">
-            ⚔️ Defense Impact: Vulnerable LLM vs. AI Banking Firewall Firewall
+            ⚔️ Defense Impact: Vulnerable LLM vs. AI Banking Firewall
           </div>
           <div id="simComparison" style="font-size:0.83rem; line-height:1.4; color:#1e3a8a;">
             Run any request to view simulated contrast between unmitigated execution and AI Banking Firewall interception.

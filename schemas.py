@@ -74,7 +74,7 @@ class AccountTier(str, Enum):
 
 class FirewallRequest(BaseModel):
     """
-    Payload submitted to the AI Banking Firewall firewall.
+    Payload submitted to the AI Banking Firewall.
     All text fields are treated as UNTRUSTED until normalised and evaluated.
     """
 

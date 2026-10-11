@@ -625,6 +625,7 @@ _HTML_DASHBOARD = """<!DOCTYPE html>
     };
 
     function loadPreset(name) {
+      window.currentSessionId = Date.now(); // Start fresh session for each preset test
       const p = presets[name];
       if (!p) return;
       document.getElementById("userInput").value = p.userInput;
@@ -649,7 +650,7 @@ _HTML_DASHBOARD = """<!DOCTYPE html>
         amount: amountVal ? parseFloat(amountVal) : null,
         account_tier: document.getElementById("tier").value,
         strict_binary_mode: document.getElementById("strictBinary").checked,
-        session_id: "demo-session-web"
+        session_id: "demo-session-" + (window.currentSessionId || (window.currentSessionId = Date.now()))
       };
 
       try {

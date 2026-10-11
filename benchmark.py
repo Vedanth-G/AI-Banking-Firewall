@@ -75,7 +75,7 @@ VECTORS: list[BenchmarkVector] = [
 
 def run_benchmark() -> None:
     print("\n" + "=" * 80)
-    print("🛡️  BANKISM AI FIREWALL — HIGH-VELOCITY ADVERSARIAL BENCHMARK")
+    print("🛡️  AI BANKING FIREWALL — HIGH-VELOCITY ADVERSARIAL BENCHMARK")
     print("=" * 80)
     print(f"Total Vectors: {len(VECTORS)} | Threat Families: 5 | Defense Layers: 4 + 3 Features\n")
 

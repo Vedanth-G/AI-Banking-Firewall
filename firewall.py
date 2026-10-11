@@ -27,11 +27,12 @@ Sequence:
       └─ [Post]     strict_binary_mode coercion   → final FirewallVerdict
 """
 
-from __future__ import annotations
-
+import functools
+import hashlib
 import logging
 from typing import Optional
 
+from config import config
 from schemas import (
     ActionRequired,
     FirewallRequest,
@@ -49,6 +50,14 @@ import session_guard
 import honey_shield
 
 logger = logging.getLogger("ai_banking_firewall.firewall")
+
+# ---------------------------------------------------------------------------
+# High-Efficiency LRU Cache for Deterministic Steps (Sub-Millisecond Fast Path)
+# ---------------------------------------------------------------------------
+
+@functools.lru_cache(maxsize=1024)
+def _cached_normalize(text: str, memo: Optional[str]):
+    return normalizer.normalize(text=text, memo=memo)
 
 
 # ---------------------------------------------------------------------------
@@ -129,7 +138,7 @@ def _run_pipeline(request: FirewallRequest) -> FirewallVerdict:
 
     # ── Layer 1: Deterministic Normalizer ────────────────────────────────────
     logger.debug("[L1] Running normalizer on session=%s", request.session_id)
-    norm_result = normalizer.normalize(
+    norm_result = _cached_normalize(
         text=request.user_input,
         memo=request.memo,
     )

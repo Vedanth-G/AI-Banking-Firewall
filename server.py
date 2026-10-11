@@ -39,10 +39,23 @@ app.add_middleware(
 )
 
 
+import asyncio
+import time
+from fastapi import FastAPI, Request, Response
+
 @app.post("/api/v1/firewall/inspect", response_model=FirewallVerdict)
-async def inspect_request(payload: FirewallRequest) -> FirewallVerdict:
-    """Evaluate an untrusted financial request through all AI Banking Firewall defense layers."""
-    return firewall.evaluate(payload)
+async def inspect_request(payload: FirewallRequest, response: Response) -> FirewallVerdict:
+    """
+    Evaluate an untrusted financial request through all AI Banking Firewall defense layers.
+    Executes in a worker thread pool via asyncio.to_thread to maintain asynchronous
+    event loop throughput without blocking concurrent requests.
+    """
+    start_time = time.perf_counter()
+    verdict = await asyncio.to_thread(firewall.evaluate, payload)
+    latency_ms = (time.perf_counter() - start_time) * 1000
+    response.headers["X-Response-Time-Ms"] = f"{latency_ms:.2f}"
+    response.headers["X-Firewall-Verdict"] = verdict.verdict.value
+    return verdict
 
 
 @app.get("/api/v1/health")

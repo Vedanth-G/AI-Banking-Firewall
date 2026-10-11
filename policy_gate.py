@@ -1,5 +1,5 @@
 """
-Bankism — policy_gate.py
+AI Banking Firewall — policy_gate.py
 ========================
 Layer 4: Financial Policy Gate
 

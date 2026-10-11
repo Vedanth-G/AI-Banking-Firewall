@@ -1,5 +1,5 @@
 """
-Bankism — consensus_engine.py
+AI Banking Firewall — consensus_engine.py
 =============================
 Feature 3: Dual-Perspective Adversarial Consensus Engine.
 
@@ -24,7 +24,7 @@ from typing import Optional
 
 from schemas import LLMResult, RiskLevel, ThreatCategory, Verdict
 
-logger = logging.getLogger("bankism.consensus")
+logger = logging.getLogger("ai_banking_firewall.consensus")
 
 
 @dataclass

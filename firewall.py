@@ -1,5 +1,5 @@
 """
-Bankism — firewall.py
+AI Banking Firewall — firewall.py
 =====================
 Main Orchestration Pipeline
 
@@ -48,7 +48,7 @@ import policy_gate
 import session_guard
 import honey_shield
 
-logger = logging.getLogger("bankism.firewall")
+logger = logging.getLogger("ai_banking_firewall.firewall")
 
 
 # ---------------------------------------------------------------------------
@@ -80,7 +80,7 @@ def _heuristic_llm_stub(heuristic: HeuristicResult) -> LLMResult:
 
 def evaluate(request: FirewallRequest) -> FirewallVerdict:
     """
-    Run the full Bankism defense pipeline against a FirewallRequest.
+    Run the full AI Banking Firewall defense pipeline against a FirewallRequest.
 
     This function coordinates:
       - Layer 1: Deterministic Normalizer (homoglyphs, encodings, invisible text)

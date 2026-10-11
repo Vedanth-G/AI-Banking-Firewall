@@ -1,6 +1,6 @@
-# Bankism — Blue-Team AI Firewall & Guardrail Defense
+# AI Banking Firewall — Blue-Team AI Firewall & Guardrail Defense
 
-Bankism is a **Defense-in-Depth AI security firewall** that intercepts untrusted
+AI Banking Firewall is a **Defense-in-Depth AI security firewall** that intercepts untrusted
 user inputs before any core banking action or API is executed.
 
 ---
@@ -114,7 +114,7 @@ Open **[http://localhost:8000](http://localhost:8000)** in your browser.
 
 ```bash
 # 1. Clone and enter the project
-cd bankism
+cd ai_banking_firewall
 
 # 2. Create a virtual environment
 python -m venv .venv

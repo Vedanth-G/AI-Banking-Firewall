@@ -1,5 +1,5 @@
 """
-Bankism — tests/test_firewall.py
+AI Banking Firewall — tests/test_firewall.py
 =================================
 Adversarial Test Matrix
 
@@ -41,7 +41,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# ── Make bankism root importable when pytest is run from project root ─────────
+# ── Make ai_banking_firewall root importable when pytest is run from project root ─────────
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
 from schemas import (

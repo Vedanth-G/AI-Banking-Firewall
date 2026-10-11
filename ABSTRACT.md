@@ -1,4 +1,4 @@
-# Bankism: Blue-Team AI Firewall & Guardrail Defense
+# AI Banking Firewall: Blue-Team AI Defense Gateway
 ## Technical Architecture & Design Abstract
 
 ### 1. Problem Understanding
@@ -12,7 +12,7 @@ Modern banking and fintech platforms increasingly integrate Large Language Model
 ---
 
 ### 2. Proposed Architecture & Strategy: Defense-in-Depth
-Bankism introduces a multi-tiered, deterministic and semantic defense gateway that intercepts and inspects every untrusted request before downstream financial APIs are invoked:
+AI Banking Firewall introduces a multi-tiered, deterministic and semantic defense gateway that intercepts and inspects every untrusted request before downstream financial APIs are invoked:
 
 1. **Feature 1 — Multi-Turn Session Guard (`session_guard.py`)**:
    Maintains a sliding-window conversational state across sessions. Analyzes semantic drift and tracks a Cumulative Risk Score (CRS) to thwart multi-turn "salami-slicing" context poisoning.

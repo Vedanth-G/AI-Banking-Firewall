@@ -1,5 +1,5 @@
 """
-Bankism — schemas.py
+AI Banking Firewall — schemas.py
 ====================
 Single source of truth for all data contracts.
 
@@ -38,7 +38,7 @@ class RiskLevel(str, Enum):
 
 class ThreatCategory(str, Enum):
     """
-    Taxonomy of adversarial patterns targeted by Bankism.
+    Taxonomy of adversarial patterns targeted by AI Banking Firewall.
     NONE is reserved for clean, benign requests.
     """
 
@@ -74,7 +74,7 @@ class AccountTier(str, Enum):
 
 class FirewallRequest(BaseModel):
     """
-    Payload submitted to the Bankism firewall.
+    Payload submitted to the AI Banking Firewall firewall.
     All text fields are treated as UNTRUSTED until normalised and evaluated.
     """
 

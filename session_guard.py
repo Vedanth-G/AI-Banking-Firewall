@@ -1,5 +1,5 @@
 """
-Bankism — session_guard.py
+AI Banking Firewall — session_guard.py
 ==========================
 Feature 1: Multi-Turn Context Poisoning & Salami-Attack Defense.
 

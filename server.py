@@ -1,5 +1,5 @@
 """
-Bankism — server.py
+AI Banking Firewall — server.py
 ===================
 Feature 4: Live Cyber Defense Cockpit & Interactive API Server.
 
@@ -25,7 +25,7 @@ from schemas import AccountTier, FirewallRequest, FirewallVerdict
 load_dotenv()
 
 app = FastAPI(
-    title="Bankism: Blue-Team AI Firewall & Guardrail Defense",
+    title="AI Banking Firewall: Blue-Team AI Defense Gateway",
     version="2.0.0",
     description="Enterprise AI Defense Gateway for Banking Applications",
 )
@@ -41,7 +41,7 @@ app.add_middleware(
 
 @app.post("/api/v1/firewall/inspect", response_model=FirewallVerdict)
 async def inspect_request(payload: FirewallRequest) -> FirewallVerdict:
-    """Evaluate an untrusted financial request through all Bankism defense layers."""
+    """Evaluate an untrusted financial request through all AI Banking Firewall defense layers."""
     return firewall.evaluate(payload)
 
 
@@ -49,7 +49,7 @@ async def inspect_request(payload: FirewallRequest) -> FirewallVerdict:
 async def health_check():
     return {
         "status": "operational",
-        "service": "Bankism AI Firewall",
+        "service": "AI Banking Firewall",
         "active_layers": [
             "L1: Deterministic Normalizer",
             "L2: Heuristic Fast-Path",
@@ -71,7 +71,7 @@ _HTML_DASHBOARD = """<!DOCTYPE html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bankism — Blue-Team AI Firewall Cockpit</title>
+  <title>AI Banking Firewall — Blue-Team AI Firewall Cockpit</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -424,7 +424,7 @@ _HTML_DASHBOARD = """<!DOCTYPE html>
     <div class="brand">
       <div class="brand-icon">B</div>
       <div>
-        <h1>Bankism AI Firewall</h1>
+        <h1>AI Banking Firewall</h1>
         <span>Blue-Team Defensive Guardrail Cockpit · Dual-LLM & Multi-Turn Guard</span>
       </div>
     </div>
@@ -548,10 +548,10 @@ _HTML_DASHBOARD = """<!DOCTYPE html>
         <!-- Red Team vs Protected Simulator Comparison -->
         <div style="background:#eaf2ff; border:1px solid #bfdbfe; border-radius:8px; padding:12px; margin-top:4px;">
           <div style="font-size:0.78rem; font-weight:700; color:#1e40af; text-transform:uppercase; margin-bottom:6px;">
-            ⚔️ Defense Impact: Vulnerable LLM vs. Bankism Firewall
+            ⚔️ Defense Impact: Vulnerable LLM vs. AI Banking Firewall Firewall
           </div>
           <div id="simComparison" style="font-size:0.83rem; line-height:1.4; color:#1e3a8a;">
-            Run any request to view simulated contrast between unmitigated execution and Bankism interception.
+            Run any request to view simulated contrast between unmitigated execution and AI Banking Firewall interception.
           </div>
         </div>
 
@@ -704,13 +704,13 @@ _HTML_DASHBOARD = """<!DOCTYPE html>
       const simBox = document.getElementById("simComparison");
       if (data.verdict === "BLOCKED") {
         simBox.innerHTML = `
-          <strong style="color:#b91c1c;">⚠️ Without Bankism:</strong> Direct LLM would execute attacker instructions, hallucinate authorizations, or leak system data.<br>
-          <strong style="color:#047857;">🛡️ With Bankism:</strong> Request intercepted at <strong>${data.threat_category}</strong>, privileged API blocked, session flagged.
+          <strong style="color:#b91c1c;">⚠️ Without AI Banking Firewall:</strong> Direct LLM would execute attacker instructions, hallucinate authorizations, or leak system data.<br>
+          <strong style="color:#047857;">🛡️ With AI Banking Firewall:</strong> Request intercepted at <strong>${data.threat_category}</strong>, privileged API blocked, session flagged.
         `;
       } else if (data.verdict === "CHALLENGE") {
         simBox.innerHTML = `
-          <strong style="color:#b45309;">⚠️ Without Bankism:</strong> Unauthenticated high-value transfer would execute unconditionally without multi-factor authorization.<br>
-          <strong style="color:#047857;">🛡️ With Bankism:</strong> Layer 4 Policy Gate suspended execution until Step-Up MFA verification succeeds.
+          <strong style="color:#b45309;">⚠️ Without AI Banking Firewall:</strong> Unauthenticated high-value transfer would execute unconditionally without multi-factor authorization.<br>
+          <strong style="color:#047857;">🛡️ With AI Banking Firewall:</strong> Layer 4 Policy Gate suspended execution until Step-Up MFA verification succeeds.
         `;
       } else {
         simBox.innerHTML = `
@@ -726,7 +726,7 @@ _HTML_DASHBOARD = """<!DOCTYPE html>
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = "bankism-incident-report-" + Date.now() + ".json";
+      a.download = "ai_banking_firewall-incident-report-" + Date.now() + ".json";
       a.click();
       URL.revokeObjectURL(url);
     }
@@ -743,7 +743,7 @@ async def cockpit_ui():
 
 
 def run_server(host: str = "127.0.0.1", port: int = 8000):
-    """Launch the Bankism interactive service."""
+    """Launch the AI Banking Firewall interactive service."""
     uvicorn.run(app, host=host, port=port)
 
 

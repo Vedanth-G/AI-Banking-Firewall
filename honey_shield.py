@@ -1,5 +1,5 @@
 """
-Bankism — honey_shield.py
+AI Banking Firewall — honey_shield.py
 =========================
 Feature 2: Financial Honeypot Canary Tokens & Output Exfiltration Shield.
 

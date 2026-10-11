@@ -307,6 +307,10 @@ def llm_inspect(
     """
     prompt = _build_llm_prompt(norm, heuristic, amount, recipient, session_id, canary_token)
 
+    api_key = os.getenv("GEMINI_API_KEY")
+    if api_key:
+        genai.configure(api_key=api_key)
+
     fallback_models = [
         os.getenv("GEMINI_MODEL", "gemini-3.8-flash"),
         "gemini-3.5-flash",

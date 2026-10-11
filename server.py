@@ -54,7 +54,7 @@ async def inspect_request(payload: FirewallRequest, response: Response) -> Firew
     verdict = await asyncio.to_thread(firewall.evaluate, payload)
     latency_ms = (time.perf_counter() - start_time) * 1000
     response.headers["X-Response-Time-Ms"] = f"{latency_ms:.2f}"
-    response.headers["X-Firewall-Verdict"] = verdict.verdict.value
+    response.headers["X-Firewall-Verdict"] = str(verdict.verdict)
     return verdict
 
 

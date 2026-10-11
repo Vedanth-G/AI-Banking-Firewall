@@ -134,3 +134,20 @@ def reset_session(session_id: str) -> None:
     """Clear session history (e.g. for testing or logout)."""
     if session_id in _SESSION_STORE:
         del _SESSION_STORE[session_id]
+
+
+def prune_stale_sessions() -> int:
+    """
+    Purge expired sessions exceeding SESSION_TTL_SECONDS.
+    Ensures memory hygiene under continuous production load.
+    Returns the count of purged sessions.
+    """
+    now = time.time()
+    expired = [
+        sid for sid, s in _SESSION_STORE.items()
+        if now - s.created_at > SESSION_TTL_SECONDS
+    ]
+    for sid in expired:
+        del _SESSION_STORE[sid]
+    return len(expired)
+

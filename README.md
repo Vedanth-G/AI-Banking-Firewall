@@ -81,11 +81,16 @@ Open **[http://localhost:8000](http://localhost:8000)** in your browser.
 | File | Layer | Purpose |
 |---|---|---|
 | `schemas.py` | Contract | All Pydantic models — `FirewallRequest`, `FirewallVerdict`, enums |
-| `normalizer.py` | 1 | Deterministic text normalisation (8 passes) |
-| `evaluator.py` | 2 + 3 | Heuristic blocklist + isolated LLM semantic analysis |
-| `policy_gate.py` | 4 | Financial business rules (cannot be AI-overridden) |
-| `firewall.py` | Orchestrator | Wires all 4 layers; single public `evaluate()` entry point |
-| `tests/test_firewall.py` | Testing | 10-case adversarial matrix (offline + integration) |
+| `normalizer.py` | Layer 1 | Deterministic text normalisation (8 passes) |
+| `evaluator.py` | Layer 2 + 3 | Heuristic blocklist + isolated LLM semantic analysis |
+| `policy_gate.py` | Layer 4 | Financial business rules (cannot be AI-overridden) |
+| `session_guard.py` | Feature 1 | Multi-turn context poisoning & salami slicing defense |
+| `honey_shield.py` | Feature 2 | Canary honeypot tripwire tokens & PII exfiltration redaction |
+| `consensus_engine.py` | Feature 3 | Dual-perspective Red-Team auditor vs. Blue-Team compliance arbiter |
+| `server.py` | Feature 4 | FastAPI server & Blue SOC Cyber Defense Cockpit UI |
+| `firewall.py` | Orchestrator | Wires all 4 layers & 3 features; single `evaluate()` entry point |
+| `tests/test_firewall.py` | Testing | 17-case adversarial test matrix (15 offline + 2 live integration) |
+| `benchmark.py` | Benchmark | 21-vector high-velocity adversarial stress test |
 
 ---
 
@@ -114,7 +119,7 @@ Open **[http://localhost:8000](http://localhost:8000)** in your browser.
 
 ```bash
 # 1. Clone and enter the project
-cd ai_banking_firewall
+cd AI-Banking-Firewall
 
 # 2. Create a virtual environment
 python -m venv .venv
@@ -134,11 +139,11 @@ copy .env.example .env
 ## Running the Test Suite
 
 ```bash
-# Offline (no API key needed — mocked LLM, fully deterministic)
-pytest tests/test_firewall.py -v
+# Offline (no API key needed — mocked LLM, fully deterministic, fast)
+pytest tests/test_firewall.py -m "not integration" -v
 
-# Integration tests (requires GEMINI_API_KEY in .env)
-pytest tests/test_firewall.py -v -m integration
+# Full suite with integration tests (requires GEMINI_API_KEY in .env)
+pytest tests/test_firewall.py -v
 ```
 
 ### Test Matrix
@@ -154,7 +159,13 @@ pytest tests/test_firewall.py -v -m integration
 | TC-07 | Delimiter leak tokens | `BLOCKED` | `DELIMITER_LEAK` |
 | TC-08 | High-value transfer (high-risk account) | `CHALLENGE` | `NONE` |
 | TC-09 | `strict_binary_mode` collapses CHALLENGE | `BLOCKED` | `NONE` |
-| TC-10 | Fail-closed on LLM exception | `BLOCKED` | `NONE` |
+| TC-10 | Fail-closed on LLM exception | `BLOCKED` | `CRITICAL` |
+| TC-11 | Multi-turn context poisoning & salami slicing | `BLOCKED` | `DIRECT_PROMPT_INJECTION` |
+| TC-12 | Canary honeypot token tripwire leakage | `TRIPWIRE` | `Canary Alert` |
+| TC-13 | Output financial PII exfiltration redaction | `REDACTED` | `PAN/SSN/IBAN Masked` |
+| TC-14 | Dual-perspective Red-Team arbiter override | `BLOCKED` | `Consensus Fail-Closed` |
+| TC-15 | Session store TTL pruning & memory hygiene | `VERIFIED` | `Memory Cleaned` |
+
 
 ---
 
